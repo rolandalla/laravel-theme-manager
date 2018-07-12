@@ -1,0 +1,36 @@
+{
+    "name": "roland/laravel-theme-manager",
+    "description": "Laravel 5 Themes: Asset & Views folder per theme. Theme inheritance. Blade integration and more...",
+    "keywords": ["themes", "views", "assets", "blade", "laravel-5", "package"],
+    "license": "MIT",
+    "homepage": "https://rolandalla.com/contact",
+    "authors": [
+        {
+            "name": "Roland Alla",
+            "email": "info@rolandalla.com"
+        }
+    ],
+    "require": {
+        "php": "^7.0",
+        "laravel/framework": "~5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Roland\\Theme\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Roland\\Theme\\ThemeServiceProvider"
+            ],
+            "aliases": {
+                "Theme": "Roland\\Theme\\Facades\\Theme"
+            }
+        }
+    },
+    "minimum-stability": "stable"
+}

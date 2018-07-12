@@ -1,0 +1,12 @@
+{
+	"theme_title": "Default theme",
+	"theme_description": "Default theme for the theme package",
+	"theme_uri": "https://domain.com",
+	"theme_version": "1.0.0",
+	"theme_license": "The MIT License (MIT)",
+	"theme_tags": "default, simple",
+	"theme_type": "web",
+	"author_name": "masterman test",
+	"author_email": "masterman@domain.com",
+	"author_uri": "https://domain.com"
+}
