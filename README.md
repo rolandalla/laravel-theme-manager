@@ -34,7 +34,7 @@ Or, Run `composer require` from your terminal to install the package via the Com
 
 
 ```shell
-composer require platformoncloud/laravel-theme
+composer require roland/laravel-theme-manager
 ```
 
 ## Service Provider & Facade
@@ -43,25 +43,25 @@ If you disabled the laravel's automatic package discovery feature these will hel
 
 ```php
 // Service Provider
-Platformoncloud\Theme\ThemeServiceProvider::class,
+Roland\Theme\ThemeServiceProvider::class,
 
 // Facade
-'Theme' => Platformoncloud\Theme\Facades\Theme::class,
+'Theme' => Roland\Theme\Facades\Theme::class,
 ```
 
 ## Publish Configuration
 
 You may also need to publish package's config file to your project. In order to do it, run the following command from your terminal.
 
-	php artisan vendor:publish --provider="Platformoncloud\Theme\ThemeServiceProvider"
+	php artisan vendor:publish --provider="Roland\Theme\ThemeServiceProvider"
 
-#Configuration
+##Configuration
 Much of the package comes preconfigured, so that you can start building your API right away after you installed. You can either use `.env` file or `config/themes.php` to configure most of the package.
 
 You also can publish the configuration file with the following Artisan command:
 
 ```shell
-php artisan vendor:publish --provider="Platformoncloud\Theme\ThemeServiceProvider"
+php artisan vendor:publish --provider="Roland\Theme\ThemeServiceProvider"
 ```
 
 #### Enable or disable the package
@@ -98,7 +98,7 @@ Here you may specify a path for themes.
 'path' => base_path('resources/themes'),
 ```
 
-#Basic Usage
+##Basic Usage
 ### Create a theme
 
 To create a theme, first, add a `themes` folder to the `resources` folder of your app.
@@ -129,14 +129,14 @@ This is the basic structure of the theme information file. You can add any numbe
 {
 	"theme_title": "Default theme",
 	"theme_description": "Default theme for the theme package",
-	"theme_uri": "https://platformoncloud.com",
+	"theme_uri": "https://domain.com",
 	"theme_version": "1.0.0",
 	"theme_license": "The MIT License (MIT)",
 	"theme_tags": "default, simple",
 	"theme_type": "web",
-	"author_name": "Minuwan Deshapriya",
-	"author_email": "minuwan@platformoncloud.com",
-	"author_uri": "https://platformoncloud.com"
+	"author_name": "Jon Deep",
+	"author_email": "JonDeep@domain.com",
+	"author_uri": "https://domain.com"
 }
 
 ```
@@ -182,7 +182,7 @@ return Theme::with(['name' => 'Victoria'])->view(['welcome']);
 // Alternative way
 return Theme::view(['welcome'], ['name' => 'Victoria']);
 ```
-#Advanced
+##Advanced
 We allow you extend or add more theme providers using `extend` function on runtime without a hassle.
 
 ```php
