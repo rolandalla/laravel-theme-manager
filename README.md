@@ -51,11 +51,6 @@ Roland\Theme\ThemeServiceProvider::class,
 
 ## Publish Configuration
 
-You may also need to publish package's config file to your project. In order to do it, run the following command from your terminal.
-
-	php artisan vendor:publish --provider="Roland\Theme\ThemeServiceProvider"
-
-##Configuration
 Much of the package comes preconfigured, so that you can start building your API right away after you installed. You can either use `.env` file or `config/themes.php` to configure most of the package.
 
 You also can publish the configuration file with the following Artisan command:
@@ -194,6 +189,8 @@ We allow you extend or add more theme providers using `extend` function on runti
 	// Chnage the theme driver from route
 	return Theme::driver('riak');
 ```
-## License
+## Credits
+This package is a fork of [Laravel-Theme](https://github.com/platformoncloud/laravel-theme)
 
+## License
 This package is licensed under the [The MIT License (MIT)](https://opensource.org/licenses/MIT).
