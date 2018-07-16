@@ -24,7 +24,7 @@ This package provides tools for the following:
 
 To get started with this package, add the following lines to your `composer.json` file and run `composer update`.
 
-```json
+```php
 "require": {
 	"roland/laravel-theme-manager": "~1.0"
 }
@@ -63,7 +63,7 @@ php artisan vendor:publish --provider="Roland\Theme\ThemeServiceProvider"
 
 You can set the value to true or false to enable or disable the package.
 
-```json
+```array
 enable => true,
 ```
 
@@ -73,7 +73,7 @@ Here you may specify which of the theme provider connections below you wish to u
 
 > Available drivers: "file"
 
-```json
+```array
 'driver' => 'file',
 ```
 
@@ -81,7 +81,7 @@ Here you may specify which of the theme provider connections below you wish to u
 
 Here you may specify the default theme.
 
-```json
+```array
 'theme' => 'default',
 ```
 
@@ -89,7 +89,7 @@ Here you may specify the default theme.
 
 Here you may specify a path for themes.
 
-```json
+```array
 'path' => base_path('resources/themes'),
 ```
 
@@ -161,6 +161,11 @@ You also can change the theme provider at runtime.
 To check whether a theme exists or not.
 
 	Theme::exists('mytheme');
+	
+To check all themes.
+
+	Theme::all();
+Ps: it will return a json with all the installed themes
 
 Return theme's information as `json`.
 
@@ -193,8 +198,17 @@ We allow you extend or add more theme providers using `extend` function on runti
 	// Chnage the theme driver from route
 	return Theme::driver('riak');
 ```
-## Credits
-This package is a fork of [Laravel-Theme](https://github.com/platformoncloud/laravel-theme)
+
+Configure Middleware 
+
+- Publish the package: ````php artisan vendor:publish````
+- On ```Http/kernel.php``` add to protected ``'theme' => \App\Http\Middleware\CheckTheme::class,``
+- Use middleware on the routes
+
+ Route example:
+ `` Route::get('/', ['uses' => 'TestController@home'])->middleware('theme:ThemeName');``
+ 
+ ps. using the theme will allow you to use the deafult Laravel ```view()``` with the currect theme :) 
 
 ## License
 This package is licensed under the [The MIT License (MIT)](https://opensource.org/licenses/MIT).

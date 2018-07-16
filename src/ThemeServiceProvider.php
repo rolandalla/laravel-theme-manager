@@ -16,6 +16,10 @@ class ThemeServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/themes.php' => config_path('themes.php'),
         ], 'config');
+
+        $this->publishes([
+            __DIR__.'/../Middleware/CheckTheme.php' => app_path('Http/Middleware/CheckTheme.php')
+        ], 'middleware');
     }
 
     /**
