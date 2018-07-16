@@ -145,6 +145,10 @@ To simply display a view (welcome) using the current theme. Otherwise fallback (
 To set the current theme on runtime.
 
 	return Theme::use('mytheme')->view(['welcome']);
+	
+To set the current theme and update the default config theme.
+
+	Theme::set('mytheme');
 
 Add `theme` parameter to preview a theme on runtime.
 
