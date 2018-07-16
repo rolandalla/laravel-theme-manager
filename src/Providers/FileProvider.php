@@ -55,7 +55,24 @@ class FileProvider extends AbstractProvider implements Provider
 
         return $this;
     }
-
+    /**
+     * Set a theme as the current theme.
+     *
+     * @param string $theme
+     *
+     * @throws \Exception
+     *
+     * @return void
+     */
+    public function set($theme)
+    {
+        if (!$this->exists($theme)) {
+            throw new Exception('The theme '.'"'.$theme.'"'.' does not exist.');
+        }
+        $this->theme = $theme;
+        \Config::set('themes.theme', $theme);
+        return $this;
+    }
     /**
      * Check whether a theme exists or not.
      *
