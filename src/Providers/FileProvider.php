@@ -55,6 +55,7 @@ class FileProvider extends AbstractProvider implements Provider
 
         return $this;
     }
+
     /**
      * Set a theme as the current theme.
      *
@@ -71,8 +72,47 @@ class FileProvider extends AbstractProvider implements Provider
         }
         $this->theme = $theme;
         \Config::set('themes.theme', $theme);
+        $this->addLocation($this->path.'/'.$this->theme);
         return $this;
     }
+    public function themes_path($filename = null)
+    {
+        return $filename ? $this->path . '/' . $filename : $this->path;
+    }
+    // Scans theme folders for theme.json files and returns an array of themes
+    public function all()
+    {
+        $themes = [];
+        foreach (glob($this->themes_path('*'), GLOB_ONLYDIR) as $themeFolder) {
+            $themeFolder = realpath($themeFolder);
+            if (file_exists($jsonFilename = $themeFolder . '/' . 'theme.json')) {
+                $folders = explode(DIRECTORY_SEPARATOR, $themeFolder);
+                $themeName = end($folders);
+                // default theme settings
+                $defaults = [
+                    'name' => $themeName,
+                    'asset-path' => $themeName,
+                    'extends' => null,
+                ];
+                // If theme.json is not an empty file parse json values
+                $json = file_get_contents($jsonFilename);
+                if ($json !== "") {
+                    $data = json_decode($json, true);
+                    if ($data === null) {
+                        throw new \Exception("Invalid theme.json file at [$themeFolder]");
+                    }
+                } else {
+                    $data = [];
+                }
+                // We already know views-path since we have scaned folders.
+                // we will overide this setting if exists
+                $data['views-path'] = $themeName;
+                $themes[] = array_merge($defaults, $data);
+            }
+        }
+        return $themes;
+    }
+
     /**
      * Check whether a theme exists or not.
      *
